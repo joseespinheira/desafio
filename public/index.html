@@ -1,0 +1,161 @@
+<html>
+    <head>
+        <title>Video chat</title>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="css/video.css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+    </head>
+    <body>
+        <div id="loading" class="center">
+            <div class="preloader-wrapper big active">
+                <div class="spinner-layer spinner-green-only">
+                  <div class="circle-clipper left">
+                    <div class="circle"></div>
+                  </div><div class="gap-patch">
+                    <div class="circle"></div>
+                  </div><div class="circle-clipper right">
+                    <div class="circle"></div>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div id="fail" class="row hide">
+            <div class="col s12 m4 offset-m4" >
+                <div class="card pink white-text">
+                    <div class="card-content">
+                        <p>We can't connect you because we don't find your microphone and camera.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="connect" class="row hide" >
+            <div class="d-flex justify-content-center" >
+                <div class="card w-50 ">
+                    <div class="card-action teal lighten-1 white-text" >
+                        <h3 class="card-title" id='button-voltar'>Inicio - Video Chat P2P</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="row">
+                            <div class="col" id="escolha">
+                                <label for=""> O que deseja fazer? </label>
+                                <button id="button-entrar-sala">Entrar</button>
+                                <button id="button-criar-sala">Criar</button>
+                            </div>
+                            <div class="col" id="entrar-sala">
+                                <form id="roomForm" >
+                                    <div class="row input-field">
+                                        <input id="input-username" placeholder="Your name" type="text" required>
+                                        <label for="input-username">Username:</label>
+                                    </div><br>
+                                    <div class="row input-field">
+                                        <input id="inputRoom" placeholder="room name" type="text" required>
+                                        <label for="inputRoom">Room name:</label>
+                                    </div><br>
+                                    <button type="submit" style="width: 100%;" class="btn-large waves-effect waves-dark">Enter</button>
+                                    <button type="button" id="button-voltar" style="width: 100%;" class="btn-large waves-effect waves-dark">Voltar</button>
+                                </form>
+                            </div>
+                            <div class="col" id="criar-sala">
+                                <form id="roomForm" >
+                                    <div class="row input-field">
+                                        <input id="input-username" placeholder="Your name" type="text" required>
+                                        <label for="input-username">Username:</label>
+                                    </div><br>
+                                    <div class="row input-field">
+                                        <input id="input-video" placeholder="Youtube, Vimeo ou Twitch" type="text" required>
+                                        <label for="input-video">Link do Vídeo:</label>
+                                    </div><br>
+                                    <div class="row input-field">
+                                        <input id="inputRoom" placeholder="room name" type="text" required>
+                                        <label for="inputRoom">Room name:</label>
+                                    </div><br>
+                                    <button type="submit" style="width: 100%;" class="btn-large waves-effect waves-dark">Enter</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="players" class="hide">
+            <nav>
+                <div class="nav-wrapper teal">
+                  <ul class="right">
+                    <li><a id="leave"><i class="material-icons">exit_to_app</i></a></li>
+                  </ul>
+                </div>
+            </nav>
+            <div class="row" style="height: 85vh;">
+                <div class="col-7 p-4" style="display: flex;text-align: center;">
+
+                    <div id="youtube" class="col">
+                        <iframe id="link-video" 
+                            width="420" 
+                            height="315" frameborder="0" allowfullscreen
+                            src="https://www.youtube.com/embed/A6XUVjK9W4o">
+                        </iframe>
+                    </div>
+                    <div id="erroplayvideo" class="col">
+                        <h2 id="meerro">Aguardando participantes!</h2>
+                    </div>
+                    <div id="twitch" class="col"> 
+                        <!-- Add a placeholder for the Twitch embed -->
+                        <div id="twitch-embed"></div>
+                    </div>
+                        
+                    <!-- Load the Twitch embed JavaScript file -->
+                    <script src="https://embed.twitch.tv/embed/v1.js"></script>
+                    
+                    <!-- Create a Twitch.Embed object that will render within the "twitch-embed" element -->
+                    
+                </div>
+            <!-- </div>
+
+
+            <div class="row justify-content-center p-5"> -->
+                <div class="col-5 p-4">
+                    <div class="row">
+                        <form id="chatForm" >
+                                <div class="input-field " id="link-field-video">
+                                    <input id="inputLinkVideo" name="inputLinkVideo" placeholder="Youtube, Vimeo ou Twitch" type="text">
+                                    <label for="inputLinkVideo">Link:</label>
+                                </div><br>
+                                <div class="input-field">
+                                    <input id="inputChatMessage" placeholder="Message" type="text" required>
+                                    <label for="inputChatMessage">Message:</label>
+                                </div><br>
+                                <button type="submit" style="width: 100%;" class="btn-large waves-effect waves-dark">
+                                    <i class="material-icons">send</i>
+                                </button>
+                        </form>
+                    </div>
+                    <div id="msg" style="height: 56vh;overflow: auto;">
+                        <div id="message-printer" class="row" style="width: 37vw;">
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+        <script src="https://cdn.socket.io/socket.io-2.3.0.js"></script>
+        <script src="js/user.js"></script>
+        <script src="js/peer.js"></script>
+        <script src="js/page.js"></script>
+        <script src="js/index.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script src="js/scripts.js"></script>
+    </body>
+</html>
+
+<div class="col-6" hidden>
+    Participantes:
+    <ul id="users">
+        <li>primeiro</li>
+    </ul>
+</div>

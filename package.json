@@ -1,0 +1,18 @@
+{
+  "name": "api-p2p-video-chat",
+  "version": "1.0.0",
+  "description": "Create rooms using websocket to help users connect using webrtc",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^2.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
